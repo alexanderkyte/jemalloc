@@ -714,7 +714,6 @@ if test "x${je_cv_attribute}" = "xyes" ; then
 fi
 dnl Check for tls_model attribute support (clang 3.0 still lacks support).
 JE_CFLAGS_SAVE()
-JE_CFLAGS_ADD([-Werror])
 JE_CFLAGS_ADD([-herror_on_warning])
 JE_COMPILABLE([tls_model attribute], [],
               [static __thread int
@@ -730,7 +729,6 @@ else
 fi
 dnl Check for alloc_size attribute support.
 JE_CFLAGS_SAVE()
-JE_CFLAGS_ADD([-Werror])
 JE_CFLAGS_ADD([-herror_on_warning])
 JE_COMPILABLE([alloc_size attribute], [#include <stdlib.h>],
               [void *foo(size_t size) __attribute__((alloc_size(1)));],
@@ -741,7 +739,6 @@ if test "x${je_cv_alloc_size}" = "xyes" ; then
 fi
 dnl Check for format(gnu_printf, ...) attribute support.
 JE_CFLAGS_SAVE()
-JE_CFLAGS_ADD([-Werror])
 JE_CFLAGS_ADD([-herror_on_warning])
 JE_COMPILABLE([format(gnu_printf, ...) attribute], [#include <stdlib.h>],
               [void *foo(const char *format, ...) __attribute__((format(gnu_printf, 1, 2)));],
@@ -752,7 +749,6 @@ if test "x${je_cv_format_gnu_printf}" = "xyes" ; then
 fi
 dnl Check for format(printf, ...) attribute support.
 JE_CFLAGS_SAVE()
-JE_CFLAGS_ADD([-Werror])
 JE_CFLAGS_ADD([-herror_on_warning])
 JE_COMPILABLE([format(printf, ...) attribute], [#include <stdlib.h>],
               [void *foo(const char *format, ...) __attribute__((format(printf, 1, 2)));],
@@ -1569,7 +1565,6 @@ if test "x$enable_syscall" = "x1" ; then
   dnl Check if syscall(2) is usable.  Treat warnings as errors, so that e.g. OS
   dnl X 10.12's deprecation warning prevents use.
   JE_CFLAGS_SAVE()
-  JE_CFLAGS_ADD([-Werror])
   JE_COMPILABLE([syscall(2)], [
 #include <sys/syscall.h>
 #include <unistd.h>
